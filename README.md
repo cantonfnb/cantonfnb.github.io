@@ -1,2 +1,3 @@
-# cantonfnb.github.io
-canton fnb website
+# CantonFNB
+
+Website for the Canton FNB chapter.
