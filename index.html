@@ -325,12 +325,62 @@
     </section><!-- End Portfolio Section -->
 
 
+    <!-- ======= Our Impact Section ======= -->
+    <section id="impact" class="impact">
+      <div class="container">
+        <div class="section-title">
+          <h2>Our Impact</h2>
+          <p>We've been serving our community with roughly <span id="total-historical-serves">227</span> serves since May 1st, 2021! The table below shows our recorded meals shared since we began detailed tracking in May 2025.</p>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="impact-table-container">
+              <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                  <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Meals Shared</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Table rows will be generated dynamically by main.js -->
+                </tbody>
+              </table>
+            </div>
+
+            <div class="impact-summary mt-4 text-center">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="impact-stat">
+                    <h3 id="total-meals">0</h3>
+                    <p>Meals Since May 2025</p>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="impact-stat">
+                    <h3 id="total-serves">0</h3>
+                    <p>Serves Since May 2025</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="impact-chart-container mt-5">
+              <h4 class="text-center mb-4">Meals Shared Over Time</h4>
+              <canvas id="impactChart" width="400" height="200"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Our Impact Section -->
+
     <!-- ======= Support Us! ======= -->
     <section id="supportus" class="supportus!">
       <div class="container">
         <div class="section-title">
           <h2>Support Us!</h2>
-          <p><b> Want to donate? 💵 We are fiscally sponsored by <a href="https://food4thoughtohio.org" target="_blank">Food For Thought,</a> and <a href="https://food4thoughtohio.org/donate.html" target="_blank">general donation links, info, etc can be seen here.</a></p></b> 
+          <p><b> Want to donate? 💵 We are fiscally sponsored by <a href="https://food4thoughtohio.org" target="_blank">Food For Thought,</a> and <a href="https://food4thoughtohio.org/donate.html" target="_blank">general donation links, info, etc can be seen here.</a></p></b>
           <p>Want to help out with material supplies? <a href="https://www.amazon.com/hz/wishlist/ls/19WIGFWZ0R252?ref_=wl_share" target="_blank">Here is a link to our Amazon Wishlist!</a></p>
         </div>
       </div>
@@ -447,6 +497,8 @@ method="POST"
   <script src="assets/js/all.min.js"></script>
 
 
+  <!-- Chart.js for impact graphs -->
+  <script src="assets/js/chart.js"></script>
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 

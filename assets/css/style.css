@@ -1340,3 +1340,108 @@ section {
 #footer .credits a:hover {
   color: #009961;
 }
+
+/*--------------------------------------------------------------
+# Impact Section
+--------------------------------------------------------------*/
+.impact {
+  padding: 80px 0;
+  background: #f8f9fa;
+}
+
+.impact .section-title h2 {
+  margin-bottom: 20px;
+}
+
+.impact .section-title p {
+  color: #666;
+  font-size: 16px;
+  margin-bottom: 40px;
+}
+
+.impact-table-container {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.impact .table {
+  margin-bottom: 0;
+  font-size: 16px;
+}
+
+.impact .table th {
+  background-color: #009961 !important;
+  color: white;
+  font-weight: 600;
+  border: none;
+  padding: 20px;
+  text-align: center;
+}
+
+.impact .table td {
+  padding: 20px;
+  text-align: center;
+  border-color: #e9ecef;
+  vertical-align: middle;
+}
+
+.impact .table tbody tr:hover {
+  background-color: #f1f8f5;
+}
+
+.impact-summary {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+.impact-stat h3 {
+  color: #009961;
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  font-family: "Raleway", sans-serif;
+}
+
+.impact-stat p {
+  color: #666;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+.impact-chart-container {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+.impact-chart-container h4 {
+  color: #009961;
+  font-weight: 600;
+}
+
+.impact-chart-container canvas {
+  height: 300px !important;
+}
+
+@media (max-width: 768px) {
+  .impact .table th,
+  .impact .table td {
+    padding: 15px 10px;
+    font-size: 14px;
+  }
+
+  .impact-stat h3 {
+    font-size: 36px;
+  }
+
+  .impact-summary {
+    padding: 20px;
+  }
+}

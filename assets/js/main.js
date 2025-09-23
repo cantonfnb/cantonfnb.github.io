@@ -224,4 +224,160 @@
     }
   });
 
+  const impactData = [
+    { date: "May 17th, 2025", mealsShared: 91 },
+    { date: "June 21st, 2025", mealsShared: 100 },
+    { date: "June 28th, 2025", mealsShared: 125 },
+    { date: "July 5th, 2025", mealsShared: 101 },
+    { date: "July 12th, 2025", mealsShared: 110 },
+    { date: "July 19th, 2025", mealsShared: 126 },
+    { date: "July 26th 2025", mealsShared: 90 },
+    { date: "August 23rd, 2025", mealsShared: 107 },
+    { date: "August 30th, 2025", mealsShared: 125 },
+    { date: "September 6th, 2025", mealsShared: 135 },
+    { date: "September 13th, 2025", mealsShared: 148 },
+    { date: "September 20th, 2025", mealsShared: 162 }
+  ];
+
+  function buildImpactTable() {
+    const tableBody = select('.impact tbody');
+    if (!tableBody) return;
+
+    tableBody.innerHTML = '';
+
+    impactData.forEach(entry => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${entry.date}</td>
+        <td><strong>${entry.mealsShared}</strong></td>
+      `;
+      tableBody.appendChild(row);
+    });
+
+    calculateImpactStats();
+
+    buildImpactChart();
+  }
+
+  function calculateImpactStats() {
+    let totalMeals = 0;
+    let totalServes = impactData.length;
+
+    // Historical serves before detailed tracking (May 2021 - April 2025)
+    const historicalServes = 215; // Serves before May 2025
+    const totalHistoricalServes = historicalServes + totalServes;
+
+    impactData.forEach(entry => {
+      totalMeals += entry.mealsShared;
+    });
+
+    animateNumber('total-meals', totalMeals);
+    animateNumber('total-serves', totalServes);
+    animateNumber('total-historical-serves', totalHistoricalServes);
+  }
+
+  function animateNumber(elementId, targetNumber) {
+    const element = select(`#${elementId}`);
+    if (!element) return;
+
+    const duration = 1500;
+    const startTime = performance.now();
+    const startNumber = 0;
+
+    function updateNumber(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+      const currentNumber = Math.floor(startNumber + (targetNumber - startNumber) * easeOutQuart);
+
+      element.textContent = currentNumber;
+
+      if (progress < 1) {
+        requestAnimationFrame(updateNumber);
+      } else {
+        element.textContent = targetNumber;
+      }
+    }
+
+    requestAnimationFrame(updateNumber);
+  }
+
+  function buildImpactChart() {
+    const canvas = select('#impactChart');
+    if (!canvas) return;
+
+    const labels = impactData.map(entry => {
+      const parts = entry.date.replace(/(\d+)(st|nd|rd|th)/, '$1').split(' ');
+      return `${parts[0]} ${parts[1]}`;
+    });
+
+    const data = impactData.map(entry => entry.mealsShared);
+
+    new Chart(canvas, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Meals Shared',
+          data: data,
+          borderColor: '#009961',
+          backgroundColor: 'rgba(0, 153, 97, 0.1)',
+          borderWidth: 3,
+          fill: true,
+          tension: 0.4,
+          pointBackgroundColor: '#009961',
+          pointBorderColor: '#ffffff',
+          pointBorderWidth: 2,
+          pointRadius: 6,
+          pointHoverRadius: 8
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            grid: {
+              color: 'rgba(0, 0, 0, 0.1)'
+            },
+            ticks: {
+              font: {
+                size: 12
+              }
+            }
+          },
+          x: {
+            grid: {
+              display: false
+            },
+            ticks: {
+              font: {
+                size: 10
+              },
+              maxRotation: 45
+            }
+          }
+        },
+        elements: {
+          point: {
+            hoverBorderWidth: 3
+          }
+        }
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', buildImpactTable);
+  } else {
+    buildImpactTable();
+  }
+
 })()
