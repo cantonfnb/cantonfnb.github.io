@@ -226,6 +226,7 @@
 
   const impactData = [
     { date: "May 17th, 2025", mealsShared: 91 },
+    { date: "May 24th, 2025", mealsShared: 85},
     { date: "June 21st, 2025", mealsShared: 100 },
     { date: "June 28th, 2025", mealsShared: 125 },
     { date: "July 5th, 2025", mealsShared: 101 },
@@ -264,7 +265,7 @@
     let totalServes = impactData.length;
 
     // Historical serves before detailed tracking (May 2021 - April 2025)
-    const historicalServes = 215; // Serves before May 2025
+    const historicalServes = 214; // Serves before May 2025
     const totalHistoricalServes = historicalServes + totalServes;
 
     impactData.forEach(entry => {
@@ -381,3 +382,4 @@
   }
 
 })()
+
