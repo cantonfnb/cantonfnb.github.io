@@ -242,7 +242,8 @@
     { date: "September 27th, 2025", mealsShared: 85 },
     { date: "October 4th, 2025", mealsShared: 170 },
     { date: "October 11th, 2025", mealsShared: 131 },
-    { date: "October 18th, 2025", mealsShared: 137 }
+    { date: "October 18th, 2025", mealsShared: 137 },
+    { date: "October 25th, 2025", mealsShared: 182 }
   ];
 
   function buildImpactTable() {
@@ -387,6 +388,7 @@
   }
 
 })()
+
 
 
 
