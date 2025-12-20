@@ -250,7 +250,8 @@
     { date: "November 22th, 2025", mealsShared: 174},
     { date: "November 29th, 2025", mealsShared: 138},
     { date: "December 6th, 2025", mealsShared: 110},
-    { date: "December 13th, 2025", mealsShared: 95}
+    { date: "December 13th, 2025", mealsShared: 95},
+    { date: "December 20th, 2025", mealsShared: 101}
   ];
 
   function buildImpactTable() {
@@ -395,6 +396,7 @@
   }
 
 })()
+
 
 
 
