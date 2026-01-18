@@ -253,8 +253,9 @@
     { date: "December 13th, 2025", mealsShared: 95},
     { date: "December 20th, 2025", mealsShared: 101},
     { date: "December 27th, 2025", mealsShared: 114},
-    { date: "January 3rd, 2025", mealsShared: 112},
-    { date: "January 10th, 2025", mealsShared: 127}
+    { date: "January 3rd, 2026", mealsShared: 112},
+    { date: "January 10th, 2026", mealsShared: 127},
+    { date: "January 17th, 2026", mealsShared: 115}
     
   ];
 
@@ -400,6 +401,7 @@
   }
 
 })()
+
 
 
 
