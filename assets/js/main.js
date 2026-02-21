@@ -259,7 +259,8 @@
     { date: "January 24th, 2026", mealsShared: 123},
     { date: "January 31st, 2026", mealsShared: 92},
     { date: "February 7th, 2026", mealsShared: 105},
-    { date: "February 14th, 2026", mealsShared: 104}
+    { date: "February 14th, 2026", mealsShared: 104},
+    { date: "February 21st, 2026", mealsShared: 152}
     
   ];
 
@@ -405,6 +406,7 @@
   }
 
 })()
+
 
 
 
