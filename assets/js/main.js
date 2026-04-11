@@ -266,8 +266,13 @@
     { date: "March 14th, 2026", mealsShared: 95},
     { date: "March 21st 2026", mealsShared: 162},
     { date: "March 28th 2026", mealsShared: 160},
-    { date: "April 4th 2026", mealsShared: 140}
-    
+    { date: "April 4th 2026", mealsShared: 140},
+    { date: "April 11th, 2026", mealsShared: 153}
+  ];
+
+  // Toiletry bag tracking started April 11th, 2026
+  const toiletryData = [
+    { date: "April 11th, 2026", toiletryBags: 55 }
   ];
 
   function buildImpactTable() {
@@ -276,11 +281,30 @@
 
     tableBody.innerHTML = '';
 
+    // Build a map of toiletry data by date
+    const toiletryMap = {};
+    toiletryData.forEach(entry => { toiletryMap[entry.date] = entry.toiletryBags; });
+
+    let toiletryTrackingStarted = false;
+
     impactData.forEach(entry => {
       const row = document.createElement('tr');
+      const toiletryBags = toiletryMap[entry.date];
+      let toiletryCell;
+      if (toiletryBags !== undefined) {
+        if (!toiletryTrackingStarted) {
+          toiletryCell = `<strong>${toiletryBags}</strong> <small class="text-muted">(tracking started)</small>`;
+          toiletryTrackingStarted = true;
+        } else {
+          toiletryCell = `<strong>${toiletryBags}</strong>`;
+        }
+      } else {
+        toiletryCell = '—';
+      }
       row.innerHTML = `
         <td>${entry.date}</td>
         <td><strong>${entry.mealsShared}</strong></td>
+        <td>${toiletryCell}</td>
       `;
       tableBody.appendChild(row);
     });
@@ -302,9 +326,15 @@
       totalMeals += entry.mealsShared;
     });
 
+    let totalToiletryBags = 0;
+    toiletryData.forEach(entry => {
+      totalToiletryBags += entry.toiletryBags;
+    });
+
     animateNumber('total-meals', totalMeals);
     animateNumber('total-serves', totalServes);
     animateNumber('total-historical-serves', totalHistoricalServes);
+    animateNumber('total-toiletry-bags', totalToiletryBags);
   }
 
   function animateNumber(elementId, targetNumber) {
@@ -335,74 +365,91 @@
   }
 
   function buildImpactChart() {
-    const canvas = select('#impactChart');
-    if (!canvas) return;
-
+    // Build toiletry map
+    const toiletryMap = {};
+    toiletryData.forEach(entry => { toiletryMap[entry.date] = entry.toiletryBags; });
+    const toiletryValues = impactData.map(entry => toiletryMap[entry.date] ?? 0);
+    const mealsData = impactData.map(entry => entry.mealsShared);
     const labels = impactData.map(entry => {
       const parts = entry.date.replace(/(\d+)(st|nd|rd|th)/, '$1').split(' ');
       return `${parts[0]} ${parts[1]}`;
     });
 
-    const data = impactData.map(entry => entry.mealsShared);
-
-    new Chart(canvas, {
-      type: 'line',
-      data: {
-        labels: labels,
-        datasets: [{
-          label: 'Meals Shared',
-          data: data,
-          borderColor: '#009961',
-          backgroundColor: 'rgba(0, 153, 97, 0.1)',
-          borderWidth: 3,
-          fill: true,
-          tension: 0.4,
-          pointBackgroundColor: '#009961',
-          pointBorderColor: '#ffffff',
-          pointBorderWidth: 2,
-          pointRadius: 6,
-          pointHoverRadius: 8
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false
-          }
+    // Meals chart
+    const mealsCanvas = select('#mealsChart');
+    if (mealsCanvas) {
+      new Chart(mealsCanvas, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Meals Shared',
+            data: mealsData,
+            borderColor: '#009961',
+            backgroundColor: 'rgba(0, 153, 97, 0.1)',
+            borderWidth: 3,
+            fill: true,
+            tension: 0.4,
+            pointBackgroundColor: '#009961',
+            pointBorderColor: '#ffffff',
+            pointBorderWidth: 2,
+            pointRadius: 6,
+            pointHoverRadius: 8
+          }]
         },
-        scales: {
-          y: {
-            beginAtZero: true,
-            grid: {
-              color: 'rgba(0, 0, 0, 0.1)'
-            },
-            ticks: {
-              font: {
-                size: 12
-              }
-            }
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: true, position: 'top', labels: { usePointStyle: true, padding: 20, font: { size: 14 } } }
           },
-          x: {
-            grid: {
-              display: false
-            },
-            ticks: {
-              font: {
-                size: 10
-              },
-              maxRotation: 45
-            }
-          }
-        },
-        elements: {
-          point: {
-            hoverBorderWidth: 3
+          scales: {
+            y: { beginAtZero: true, grid: { color: 'rgba(0, 0, 0, 0.1)' }, ticks: { font: { size: 12 } } },
+            x: { grid: { display: false }, ticks: { font: { size: 10 }, maxRotation: 45 } }
           }
         }
-      }
-    });
+      });
+    }
+
+    // Toiletry chart — only show dates where we actually tracked toiletries
+    const toiletryCanvas = select('#toiletryChart');
+    if (toiletryCanvas) {
+      const firstTrackedIndex = toiletryValues.findIndex(v => v !== 0);
+      const tLabels = labels.slice(firstTrackedIndex);
+      const tValues = toiletryValues.slice(firstTrackedIndex);
+
+      new Chart(toiletryCanvas, {
+        type: 'line',
+        data: {
+          labels: tLabels,
+          datasets: [{
+            label: 'Toiletry Bags',
+            data: tValues,
+            borderColor: '#3b82f6',
+            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+            borderWidth: 3,
+            fill: true,
+            tension: 0.4,
+            pointBackgroundColor: '#3b82f6',
+            pointBorderColor: '#ffffff',
+            pointBorderWidth: 3,
+            pointRadius: 8,
+            pointHoverRadius: 10
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: true, position: 'top', labels: { usePointStyle: true, padding: 20, font: { size: 14 } } }
+          },
+          scales: {
+            y: { beginAtZero: true, grid: { color: 'rgba(0, 0, 0, 0.1)' }, ticks: { font: { size: 12 } } },
+            x: { grid: { display: false }, ticks: { font: { size: 10 }, maxRotation: 45 } }
+          }
+        }
+      });
+    }
   }
 
   if (document.readyState === 'loading') {

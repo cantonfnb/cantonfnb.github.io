@@ -293,6 +293,7 @@
                   <tr>
                     <th scope="col">Date</th>
                     <th scope="col">Meals Shared</th>
+                    <th scope="col">Toiletry Bags</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -303,13 +304,19 @@
 
             <div class="impact-summary mt-4 text-center">
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                   <div class="impact-stat">
                     <h3 id="total-meals">0</h3>
                     <p>Recorded Meals Since May 2025</p>
                   </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
+                  <div class="impact-stat">
+                    <h3 id="total-toiletry-bags">0</h3>
+                    <p>Recorded Toiletry Bags Distributed since April 2026</p>
+                  </div>
+                </div>
+                <div class="col-md-4">
                   <div class="impact-stat">
                     <h3 id="total-serves">0</h3>
                     <p>Recorded Shares Since May 2025</p>
@@ -320,7 +327,12 @@
 
             <div class="impact-chart-container mt-5">
               <h4 class="text-center mb-4">Meals Shared Over Time</h4>
-              <canvas id="impactChart" width="400" height="200"></canvas>
+              <canvas id="mealsChart" width="400" height="200"></canvas>
+            </div>
+
+            <div class="impact-chart-container mt-5">
+              <h4 class="text-center mb-4">Toiletry Bags Distributed Over Time</h4>
+              <canvas id="toiletryChart" width="400" height="200"></canvas>
             </div>
           </div>
         </div>
