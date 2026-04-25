@@ -269,12 +269,14 @@
     { date: "April 4th 2026", mealsShared: 140},
     { date: "April 11th, 2026", mealsShared: 153},
     { date: "April 18th, 2026", mealsShared: 132},
+    { date: "April 25th, 2026", mealsShared: 132},
   ];
 
   // Toiletry bag tracking started April 11th, 2026
   const toiletryData = [
     { date: "April 11th, 2026", toiletryBags: 55 },
     { date: "April 18th, 2026", toiletryBags: 44 },
+    { date: "April 25th, 2026", toiletryBags: 44 },
   ];
 
   function buildImpactTable() {
