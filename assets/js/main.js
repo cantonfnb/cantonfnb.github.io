@@ -281,7 +281,7 @@
     { date: "Jun 27th, 2026", mealsShared: 150},
     { date: "Jul 4th, 2026", mealsShared: 106},
     { date: "Jul 11th, 2026", mealsShared: 128},
-    { date: "Jul 18th, 2026", mealsShared: 160},
+    { date: "Jul 18th, 2026", mealsShared: 170},
   ];
 
   // Toiletry bag tracking started April 11th, 2026
