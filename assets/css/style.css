@@ -1217,15 +1217,21 @@ section {
   padding: 10px 12px;
 }
 .contact .php-email-form button[type=submit] {
-  background: #009961;
+  background: #00b371;
   border: 0;
-  padding: 10px 30px;
+  padding: 14px 48px;
   color: #fff;
-  transition: 0.4s;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  transition: 0.3s;
   border-radius: 50px;
+  box-shadow: 0 6px 20px rgba(0, 179, 113, 0.5);
 }
 .contact .php-email-form button[type=submit]:hover {
-  background: #00b371;
+  background: #00cc80;
+  box-shadow: 0 8px 28px rgba(0, 204, 128, 0.65);
+  transform: translateY(-2px) scale(1.03);
 }
 @-webkit-keyframes animate-loading {
   0% {
