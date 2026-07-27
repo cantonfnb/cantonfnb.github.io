@@ -254,6 +254,24 @@ h1, h2, h3, h4, h5, h6 {
   top: 100%;
   visibility: visible;
 }
+.navbar .dropdown ul a.zine-submit-btn {
+  background: #00b371;
+  color: #fff !important;
+  font-weight: 700;
+  border-radius: 50px;
+  margin: 6px 10px;
+  padding: 7px 18px;
+  text-align: center;
+  display: block;
+  box-shadow: 0 4px 14px rgba(0, 179, 113, 0.45);
+  transition: 0.3s;
+}
+.navbar .dropdown ul a.zine-submit-btn:hover {
+  background: #00cc80 !important;
+  color: #fff !important;
+  box-shadow: 0 6px 20px rgba(0, 204, 128, 0.6);
+  transform: translateY(-1px);
+}
 .navbar .dropdown .dropdown ul {
   top: 0;
   left: calc(100% - 30px);
