@@ -287,6 +287,7 @@
     { date: "Aug 8th, 2026", mealsShared: 186},
     { date: "Aug 15th, 2026", mealsShared: 216},
     { date: "Aug 22th, 2026", mealsShared: 105},
+    { date: "Aug 29th, 2026", mealsShared: 155},
   ];
 
   // Toiletry bag tracking started April 11th, 2026
@@ -311,6 +312,7 @@
     { date: "Aug 8th, 2026", toiletryBags: 50},
     { date: "Aug 15th, 2026", toiletryBags: 55},
     { date: "Aug 22th, 2026", toiletryBags: 33},
+    { date: "Aug 29th, 2026", toiletryBags: 51},
   ];
 
   function buildImpactTable() {
